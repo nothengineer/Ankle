@@ -28,7 +28,7 @@
 }
 
 .form-group {
-  width: 50%;
+  width: 30%;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -132,29 +132,61 @@
   padding-bottom: 50px;
 }
 
-.form-bottom-text>span {
-  color: #0099e8;
-  cursor: pointer;
+a {
+  color: red;
+  font-weight: bold;
+}
+
+a:hover {
+  color:red;
+  font-weight: bold;
 }
 
 .register-btn {
-  width: 50%;
+  width: 35%;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
 }
 
-.register-red-btn {
-  width: 100%;
-  background: #ea352d;
-  border: 1px solid #ea352d;
-  color: #fff;
+.register-btn-1 {
+  width: 30%;
+  border: 1px solid black;
   line-height: 48px;
-  font-size: 14px;
+  font-size: 20px;
+  font-weight:bold;
+  background: black;
+	color: #000;
+	text-shadow: 
+		0 0 0.05em #FFF59D,
+		0 0 0.06em #FFF59D,
+		0 0 0.07em #FFF59D,
+		0 0 0.08em #FFF59D,
+		0 0 0.09em #FFF59D,
+		0 0 0.20em #FFF59D,
+		0 0 0.20em #FFF59D,
+		0 0 0.20em #FFF59D,
+		0 0 0.50em #FFF59D;
+  cursor: pointer;
+}
+.register-btn-2 {
+  width: 30%;
+  border: 1px solid black;
+  line-height: 48px;
+  font-size: 20px;
+  font-weight:bold;
+  background: black;
+	color: #FFF;
+	text-shadow: 
+		0 0 0.10em #2962FF,
+		0 0 0.15em #2962FF,
+		0 0 0.80em #2962FF,
+		0 0 1.00em #2962FF;
   cursor: pointer;
 }
 
 .register-info {
-  margin: 30px 180px 0 0;
-  color: #0099e8;
-  text-align: right;
-  cursor: pointer;
+  margin: 30px 0px 0 0;
+  color:red;
+  text-align: center;
 }
