@@ -12,6 +12,12 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :familyname_kana,    null: false
       t.string :firstname_kana,     null: false
       t.date :birthday,             null: false
+      t.string :fishing_history,    null: false
+      t.string :target
+      t.string :spot
+      t.string :main_rod
+      t.string :main_reel
+      t.string :appeal
 
       ## Recoverable
       t.string   :reset_password_token

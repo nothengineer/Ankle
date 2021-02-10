@@ -1,0 +1,52 @@
+<div class="main">
+  <div class="inner">
+    <div class="user__wrapper">
+      <h2 class="page-heading">
+        <%= "#{@user.nickname}さんの情報"%>
+      </h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th class="table__col1">ニックネーム</th>
+            <td class="table__col2"><%= "#{@user.nickname}" %></td>
+          </tr>
+          <tr>
+            <th class="table__col1">釣り歴</th>
+            <td class="table__col2"><%= "#{@user.fishing_history}" %></td>
+          </tr>
+          <tr>
+            <th class="table__col1">ターゲット</th>
+            <td class="table__col2"><%=  "#{@user.target}" %></td>
+          </tr>
+          <tr>
+            <th class="table__col1">釣り場/フィールド</th>
+            <td class="table__col2"><%=  "#{@user.spot}" %></td>
+          </tr>
+          <tr>
+            <th class="table__col1">メインロッド</th>
+            <td class="table__col2"><%=  "#{@user.main_rod}" %></td>
+          </tr>
+          <tr>
+            <th class="table__col1">メインリール</th>
+            <td class="table__col2"><%=  "#{@user.main_reel}" %></td>
+          </tr>
+          <tr>
+            <th class="table__col1">自身のブログ等</th>
+            <td class="table__col2"><%=  "#{@user.appeal}" %></td>
+          </tr>
+          <tr>
+            <th class="table__col1">カード情報</th>
+            <td class="table__col2"><%=  "**** **** **** " + @card[:last4] %> 
+              <br><%= @card[:exp_month] %>/<%= @card[:exp_year] %> </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2 class="page-heading">
+        <%= "#{@user.nickname}さんの動画"%>
+      </h2>
+      <div class="user__card">
+          <%= render partial: "movies/movie", collection: @movie %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,51 +2,62 @@
   <div class="inner">
     <div class="prototype__wrapper">
       <p class="prototype__hedding">
-        <%= "プロトタイプのタイトル"%>
+        <%= @movie.title %>
       </p>
-      <%= link_to "by プロトタイプの投稿者", root_path, class: :prototype__user %>
-      <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
+      <%= link_to "#{@movie.user.nickname}","/users/#{@movie.user.id}", class: :prototype__user %> 
+      <% if user_signed_in? && current_user.id == @movie.user_id %>
         <div class="prototype__manage">
-          <%= link_to "編集する", root_path, class: :prototype__btn %>
-          <%= link_to "削除する", root_path, class: :prototype__btn %>
+          <%= link_to "編集する", edit_movie_path(@movie), class: :prototype__btn %>
+          <%= link_to "削除する", movie_path(@movie), method: :delete, class: :prototype__btn %>
         </div>
-      <%# // プロトタイプの投稿者とログインしているユーザーが同じであれば上記を表示する %>
-      <div class="prototype__image">
-        <%= image_tag "プロトタイプの画像" %>
+      <% end %>
+      <div class="prototype__image" style="text-align:center;"> 
+        <% if @movie.video.attached? %>
+          <video src="<%= rails_blob_path(@movie.video) %>" type="video/mp4" controls></video>
+        <% end %>
       </div>
       <div class="prototype__body">
         <div class="prototype__detail">
-          <p class="detail__title">キャッチコピー</p>
+          <p class="detail__title">動画概要(紹介釣具の詳細等)</p>
           <p class="detail__message">
-            <%= "プロトタイプのキャッチコピー" %>
-          </p>
-        </div>
-        <div class="prototype__detail">
-          <p class="detail__title">コンセプト</p>
-          <p class="detail__message">
-            <%= "プロトタイプのコンセプト" %>
+            <%= @movie.explanation %>
           </p>
         </div>
       </div>
+      <div class="prototype__body">
+        <div class="prototype__detail">
+          <p class="detail__title">釣具の定価</p>
+          <p class="detail__message">
+            <%= @movie.price %>
+          </p>
+        </div>
+      </div>
+      <div class="prototype__body">
+        <div class="prototype__detail">
+          <%= link_to '購入画面に進む', root_path, class:"order-btn"%>
+        </div>
+      </div>
       <div class="prototype__comments">
-        <%# ログインしているユーザーには以下のコメント投稿フォームを表示する %>
-          <%# <%= form_with local: true do |f|%>
+        <% if user_signed_in? %>
+          <%= form_with(model: [@movie, @comment], local: true) do |f|%>
             <div class="field">
-              <%# <%= f.label :hoge, "コメント" %><br />
-              <%# <%= f.text_field :hoge %>
+                <%= f.label :content, "コメント" %><br />
+                <%= f.text_field :content %>
             </div>
             <div class="actions">
-              <%# <%= f.submit "送信する", class: :form__btn  %>
+              <%= f.submit "送信する", class: :form__btn  %>
             </div>
-          <%# <% end %> 
-        <%# // ログインしているユーザーには上記を表示する %>
+          <% end %> 
+        <% end %>
         <ul class="comments_lists">
-          <%# 投稿に紐づくコメントを一覧する処理を記述する %>
-            <li class="comments_list">
-              <%# <%= " コメントのテキスト "%>
-              <%# <%= link_to "（ ユーザー名 ）", root_path, class: :comment_user %>
+            <% if @comments %>
+              <% @comments.each do |comment| %>
+              <li class="comments_list">
+              <%= comment.content %>
+              <%= link_to  "(#{comment.user.nickname})", "/users/#{comment.user.id}", class: :comment_user %>
+              <% end %>
+            <% end %>
             </li>
-          <%# // 投稿に紐づくコメントを一覧する処理を記述する %>
         </ul>
       </div>
     </div>

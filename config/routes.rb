@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  get 'cards/new'
+  resources :posts
   devise_for :users
-  root to: "movies#index"
-  resources :movies
   resources :users
+  root 'movies#index'
+  resources :movies do
+    resources :comments
+  end
+  resources :cards
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
-

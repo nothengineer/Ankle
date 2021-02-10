@@ -1,22 +1,21 @@
-<%= form_with local: true do |f|%>
+<%= form_with model:movie, class: 'form', local: true do |f| %>
   <div class="field">
-    <%= f.label :hoge, "プロトタイプの名称" %><br />
-    <%= f.text_field :hoge %>
+    <%= f.label :title, "タイトル" %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :explanation, "動画概要 ※どの場面でどういったフィールドに適しているのか、購入者がわかりやすいように説明しましょう。" %><br />
+    <%= f.text_area :explanation, class: :form__text %>
   </div>
 
   <div class="field">
-    <%= f.label :hoge, "キャッチコピー" %><br />
-    <%= f.text_area :hoge, class: :form__text %>
+    <%= f.label :price, "定価" %>￥<br />
+    <%= f.text_field :price %>
   </div>
 
   <div class="field">
-    <%= f.label :hoge, "コンセプト" %><br />
-    <%= f.text_area :hoge, class: :form__text %>
-  </div>
-
-  <div class="field">
-    <%= f.label :hoge, "プロトタイプの画像" %><br />
-    <%= f.file_field :hoge %>
+    <%= f.label :video, "紹介動画" %><br />
+    <%= f.file_field :video %>
   </div>
 
   <div class="actions">

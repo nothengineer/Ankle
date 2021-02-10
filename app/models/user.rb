@@ -13,6 +13,11 @@ class User < ApplicationRecord
     validates :familyname_kana,format: { with: ZENNKAKU_KATAKANA } 
     validates :firstname_kana,format: { with: ZENNKAKU_KATAKANA }
     validates :birthday
+    validates :fishing_history
     validates :password,format: { with:  /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i}
     end
+
+    has_many :movies
+    has_many :comments
+    has_one :card, dependent: :destroy
 end
