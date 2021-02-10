@@ -1,0 +1,13 @@
+<main class="main">
+  <div class="inner">
+    <% if user_signed_in? %>
+      <div class="greeting">
+        <%="こんにちは、"%>
+        <%= link_to "#{current_user.nickname}さん", "/users/#{current_user.id}", class: :greeting__link%>
+      </div>
+    <% end %>
+    <div class="movie__wrapper">
+    <%= render partial: 'movie',  collection: @movies %>
+    </div>
+  </div>
+</main>

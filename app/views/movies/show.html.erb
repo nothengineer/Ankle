@@ -1,0 +1,65 @@
+<main class="main">
+  <div class="inner">
+    <div class="prototype__wrapper">
+      <p class="prototype__hedding">
+        <%= @movie.title %>
+      </p>
+      <%= link_to "#{@movie.user.nickname}","/users/#{@movie.user.id}", class: :prototype__user %> 
+      <% if user_signed_in? && current_user.id == @movie.user_id %>
+        <div class="prototype__manage">
+          <%= link_to "編集する", edit_movie_path(@movie), class: :prototype__btn %>
+          <%= link_to "削除する", movie_path(@movie), method: :delete, class: :prototype__btn %>
+        </div>
+      <% end %>
+      <div class="prototype__image" style="text-align:center;"> 
+        <% if @movie.video.attached? %>
+          <video src="<%= rails_blob_path(@movie.video) %>" type="video/mp4" controls></video>
+        <% end %>
+      </div>
+      <div class="prototype__body">
+        <div class="prototype__detail">
+          <p class="detail__title">動画概要(紹介釣具の詳細等)</p>
+          <p class="detail__message">
+            <%= @movie.explanation %>
+          </p>
+        </div>
+      </div>
+      <div class="prototype__body">
+        <div class="prototype__detail">
+          <p class="detail__title">釣具の定価</p>
+          <p class="detail__message">
+            <%= @movie.price %>
+          </p>
+        </div>
+      </div>
+      <div class="prototype__body">
+        <div class="prototype__detail">
+          <%= link_to '購入画面に進む', root_path, class:"order-btn"%>
+        </div>
+      </div>
+      <div class="prototype__comments">
+        <% if user_signed_in? %>
+          <%= form_with(model: [@movie, @comment], local: true) do |f|%>
+            <div class="field">
+                <%= f.label :content, "コメント" %><br />
+                <%= f.text_field :content %>
+            </div>
+            <div class="actions">
+              <%= f.submit "送信する", class: :form__btn  %>
+            </div>
+          <% end %> 
+        <% end %>
+        <ul class="comments_lists">
+            <% if @comments %>
+              <% @comments.each do |comment| %>
+              <li class="comments_list">
+              <%= comment.content %>
+              <%= link_to  "(#{comment.user.nickname})", "/users/#{comment.user.id}", class: :comment_user %>
+              <% end %>
+            <% end %>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>

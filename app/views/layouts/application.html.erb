@@ -1,15 +1,45 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ankle</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://js.pay.jp/" , type="text/javascript"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700,900&display=swap" rel="stylesheet">
   </head>
 
   <body>
+    <header class="header">
+      <div class="inner">
+        <div class="wrap">
+          <video id="bg-video" src="mixkit-two-fishermen-walking-in-high-grass-14665-medium.mp4" poster="poster.jpg" autoplay loop></video>
+        </div>
+        <div class="nav">
+          <div class="nav__left">
+            <%= link_to image_tag("Ankle__3_-removebg-preview.png", class: :logo), root_path %>
+          </div>
+          <% if user_signed_in? %>
+            <div class="nav__right">
+              <%= link_to "LOGOUT", destroy_user_session_path, method: :delete %>
+              <%= link_to "NEWMOVIE", new_movie_path, class: :nav__btn %>
+                <br><%= link_to "PURCHASE HISTORY", root_path, class: :premium__btn %>
+                <%= link_to "INCENTIVE", root_path, class: :premium__btn %>
+            </div>
+          <% else %>
+            <div class="nav__right">
+              <%= link_to "LOGIN", new_user_session_path, class: :nav__btn %>
+              <%= link_to "REGISTER", new_user_registration_path, class: :nav__btn %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </header>
     <%= yield %>
+    <footer class="footer">
+      <p class="copyright">Copyright © YUYA ISHYAMA All rights reserved.</p>
+    </footer>
   </body>
 </html>

@@ -1,0 +1,16 @@
+<div class="movie">
+  <%= link_to movie_path(movie.id) do%>
+      <div class="video__img">
+        <% if movie.video.attached? %>
+          <%= video_tag rails_blob_path(movie.video) %>
+        <% end %>
+      </div>
+  <%end%>
+  <div class="movie__body">
+    <%=  link_to "#{movie.title}", movie_path(movie.id), class: :movie__title%>
+    <p class="movie__summary">
+      <%= "#{movie.explanation}" %>
+    </p>
+    <%= link_to "#{movie.user.nickname}", "/users/#{movie.user.id}}", class: :movie__user %>
+  </div>
+</div>

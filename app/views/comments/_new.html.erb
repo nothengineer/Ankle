@@ -1,0 +1,14 @@
+<%= form_with(model: [ @movie, Comment.new ], remote: true) do |form| %>
+    Your Comment:<br>
+    <%= form.text_area :content, size: '50x20' %><br>
+    <%= form.submit %>
+<% end %>
+
+<script>
+$(function() {
+    $('.movie_rate').raty({
+        score: 5, 
+        starType: 'i',
+    })
+})
+</script>
