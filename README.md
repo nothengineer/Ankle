@@ -161,14 +161,17 @@ Currently, in order to purchase fishing equipment, it is common to go to a perso
 
 # DEMO
  
-top page
+###### top page
  
-![](https://gyazo.com/ad0f11c7a6fd9d482016e03b17de0ca5)
+![demo](https://gyazo.com/ad0f11c7a6fd9d482016e03b17de0ca5)
  
 This page shows videos about fishing tackle posted by various users.
 
 
- 
+###### New registration screen
+
+![]()
+
 # Features
  
  
