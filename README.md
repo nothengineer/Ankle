@@ -14,7 +14,7 @@
  なので、その露出の架け橋にもなればと思い開発しました。
 
 URL
-→
+→https://ankle8888.herokuapp.com/
 
 利用方法
 →まずは基本的な名前等（本名も含む）を入力していただき、『premium会員』か『standard会員』のどちらかで登録してもらいます。
@@ -34,9 +34,189 @@ URL
 実装した機能についてのGIFと説明	実装した機能について、それぞれどのような特徴があるのか列挙しましょう。GIFを添えることで、イメージがしやすくなります。
 
 実装予定の機能
-→インセンティブ計算機能・動画評価機能（いいね等）・ジャンル検索機能・オファー機能（こんな釣具を紹介してほしい）
-
-データベース設計	ER図等を添付しましょう。
+→タイトル検索機能・インセンティブ計算機能・動画評価機能（いいね等）・ジャンル検索機能・オファー機能（こんな釣具を紹介してほしい）
 
 ローカルでの動作方法	git cloneしてから、ローカルで動作をさせるまでに必要なコマンドを記述しましょう。この時、アプリケーション開発に使用した環境を併記することを忘れないでください（パッケージやRubyのバージョンなど）。
 これらを記述し終えたら、GitHubの公開リポジトリにPushしましょう。
+
+データベース設計
+
+## users テーブル
+
+| Column               | Type   | Options     |
+| ----------           | ------ | ----------- |
+| nickname             | string | null: false |
+| email                | string | null: false |
+| encrypted_password   | string | null: false |
+| familyname           | string | null: false |
+| firstname            | string | null: false |
+| familyname_kana      | string | null: false |
+| firstname_kana       | string | null: false |
+| birthday             | date   | null: false |
+| fishing_history      | string | null: false |
+| target               | string | null: false |
+| spot                 | string | null: false |
+| main_rod             | string | null: false |
+| main_reel            | string | null: false |
+| appeal               | string | null: false |
+
+### Association
+
+- has_many :movies
+- has_many :comments
+
+## movies テーブル
+
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| title       | string     | null: false                    |
+| explanation | text       | null: false                    |
+| price       | integer    | null: false                    |
+| user        | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+
+## comments テーブル
+
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| content     | text       | null: false                    |
+| user        | references | null: false, foreign_key: true |
+| movie       | references | null: false, foreign_key: true |
+
+
+### Association
+
+- belongs_to :user
+- belongs_to :movie
+
+## orders テーブル
+
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| user        | references | null: false, foreign_key: true |
+| movie       | references | null: false, foreign_key: true |
+
+
+## Association
+
+- belongs_to :user
+- belongs_to :movie
+- has_one :address
+
+
+
+## addresses テーブル
+
+| Column              | Type       | Options                        |
+| -----------         | ---------- | ------------------------------ |
+| postal_code         | string     | null: false                    |
+| prefecture_id       | integer    | null: false                    |
+| municipalities      | string     | null: false                    |
+| address             | string     | null: false                    |
+| building_name       | string     |                                |
+| phone_number        | string     | null: false                    |
+| order               | references | null: false, foreign_key: true |
+
+
+### Association
+
+- belongs_to :order
+
+
+##アプリ名
+
+・概要(このアプリでできることを書いて下さい)						
+・制作背景(意図)						
+⇒どんな課題や不便なことを解決するためにこのアプリを作っろうと思ったのか。						
+・DEMO(gifで動画や写真を貼って、ビューのイメージを掴んでもらいます)						
+⇒できている範囲で貼り付けましょう。						
+・実装予定の内容						
+・DB設計						
+
+# Ankle
+ 
+"Ankle" is an app that combines video posting and fishing tackle purchase.
+
+# Overview
+
+First, enter your basic name (including your real name) and have them register as either a "premium member" or a "standard member".
+ (Not implemented) For "premium members", you can both post videos and purchase.
+  Also, if you purchase from the video you posted, 5% of the fishing tackle will be included as an incentive. * 500 yen per month
+ For "standard members", you can only purchase. * 300 yen per month
+  Regarding fishing tackle, it shall be shipped from the application management company, and there is no exchange between users.
+
+# Production background
+
+Currently, in order to purchase fishing equipment, it is common to go to a person who is familiar with the fishing tackle or a fishing tackle shop and ask a clerk to purchase it.
+ However, I don't know what level the person is or what kind of experience they have in such a place.
+ Fishing tackle cannot demonstrate the original goodness of fishing tackle unless it matches the level of the person.
+ Therefore, I feel that knowing what kind of fishing tackle people are using with video media will lead to more purchases.
+
+ Also, there is no test to become a professional angler, so you have to expose the media and catch the eye of the fishing tackle maker.
+ Therefore, I developed it with the hope that it would also serve as a bridge for that exposure.
+
+
+# DEMO
+ 
+top page
+ 
+![](https://gyazo.com/ad0f11c7a6fd9d482016e03b17de0ca5)
+ 
+This page shows videos about fishing tackle posted by various users.
+
+
+ 
+# Features
+ 
+ 
+# Requirement
+ 
+* Python 3.6.5
+* pyxel 1.0.2
+ 
+Environments under [Anaconda for Windows](https://www.anaconda.com/distribution/) is tested.
+ 
+```bash
+conda create -n pyxel pip python=3.6 Anaconda
+activate pyxel
+```
+ 
+# Installation
+ 
+Install Pyxel with pip command.
+ 
+```bash
+pip install pyxel
+```
+ 
+# Usage
+ 
+Please create python code named "demo.py".
+And copy &amp; paste [Day4 tutorial code](https://cpp-learning.com/pyxel_physical_sim4/).
+ 
+Run "demo.py"
+ 
+```bash
+python demo.py
+```
+ 
+# Note
+ 
+I don't test environments under Linux and Mac.
+ 
+# Author
+ 
+* Hayabusa
+* R&D Center
+* Twitter : https://twitter.com/Cpp_Learning
+ 
+# License
+ 
+"Physics_Sim_Py" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
+ 
+Enjoy making cute physics simulations!
+ 
+Thank you!

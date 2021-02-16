@@ -10,13 +10,11 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700,900&display=swap" rel="stylesheet">
   </head>
+  
 
   <body>
     <header class="header">
       <div class="inner">
-        <div class="wrap">
-          <video id="bg-video" src="mixkit-two-fishermen-walking-in-high-grass-14665-medium.mp4" poster="poster.jpg" autoplay loop></video>
-        </div>
         <div class="nav">
           <div class="nav__left">
             <%= link_to image_tag("Ankle__3_-removebg-preview.png", class: :logo), root_path %>
@@ -37,7 +35,12 @@
         </div>
       </div>
     </header>
-    <%= yield %>
+      <div class="demo_wrap">
+        <div class="demo_space">
+          <%= yield %>
+        </div>
+        <%= video_tag("/videos/mixkit-person-holding-fishing-rod-2048.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+      </div>
     <footer class="footer">
       <p class="copyright">Copyright © YUYA ISHYAMA All rights reserved.</p>
     </footer>

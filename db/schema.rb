@@ -78,6 +78,12 @@ ActiveRecord::Schema.define(version: 2021_02_09_074216) do
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "movie_id"
+    t.string "postal_code", null: false
+    t.integer "prefecture_id", null: false
+    t.string "municipalities", null: false
+    t.string "address", null: false
+    t.string "building_name"
+    t.string "phone_number", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["movie_id"], name: "index_orders_on_movie_id"

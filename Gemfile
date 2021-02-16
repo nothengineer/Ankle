@@ -57,11 +57,9 @@ gem 'pry-rails'
 
 gem 'devise'
 
-gem 'trix'
-gem 'bootstrap', '~> 4.2.1'
-gem 'jquery-rails'
-
 gem 'carrierwave'
 gem 'mini_magick'
 
 gem 'payjp'
+
+gem 'active_hash'
