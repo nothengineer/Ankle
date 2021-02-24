@@ -182,7 +182,7 @@ form {
   content: "";
   display: block;
   height: 4px;
-  background: linear-gradient(to right, rgb(230, 90, 90), transparent);
+  background: linear-gradient(to right, rgb(230, 90, 90, 1), transparent);
 }
 .movie__wrapper {
   padding-top: 30px;
