@@ -10,6 +10,6 @@ class Order < ApplicationRecord
     validates :prefecture_id, numericality: { other_than: 1}
     validates :municipalities,format:{with:/\A[一-龥ぁ-ん]/}
     validates :address
-    validates :phone_number,format:{with:/\A\d{11}\z/}ç
+    validates :phone_number,format:{with:/\A\d{11}\z/}
   end
 end
