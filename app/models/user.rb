@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+        :recoverable, :rememberable, :validatable
     
     ZENNKAKU = /\A[ぁ-んァ-ン一-龥々]+\z/
     ZENNKAKU_KATAKANA = /\A[ァ-ヶー－]+\z/

@@ -15,9 +15,16 @@
 
 .transaction-title-text {
   text-align: center;
-  border-bottom: 2px solid gray;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 30px;
+}
+
+.transaction-title-text:after {
+  content: "";
+  display: block;
+  height: 4px;
+  background: -webkit-linear-gradient(to right, rgba(230, 90, 90, 1), transparent);
+  background: linear-gradient(to right, rgba(230, 90, 90, 1), transparent);
 }
 
 /* 購入内容の表示 */
@@ -108,7 +115,7 @@
 .input-expiration-date-wrap {
   width: 100%;
   display: flex;
-  text-align: center;
+  justify-content: center;
   line-height: 55px;
 }
 
@@ -124,6 +131,7 @@
   line-height: 45px;
   text-align: center;
 }
+
 
 /* /カード情報の入力 */
 

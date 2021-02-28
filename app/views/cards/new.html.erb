@@ -1,14 +1,14 @@
-<%= form_with  url: cards_path, id: 'charge-form', class: 'card-form',local: true do |f| %>
+<%= form_with  url: cards_path, id: 'card-form', class: 'card-form',local: true do |f| %>
   <div class="Cardpage">
     <h1>カード登録</h1>
   </div><br>
   <div class='form-wrap'>
-    <%= f.label :number, "【カード番号】" %>
-    <%= f.text_field :number, class:"number", placeholder:"カード番号(半角英数字)", maxlength:"16" %>
+    <%= f.label :number, "【カード番号】" %><br>
+    <%= f.text_field :number, class:"number", placeholder:"カード番号(半角英数字)", maxlength:"25" %>
   </div>
   <div class='form-wrap'>
-    <%= f.label :cvc ,"【ＣＶＣ】" %>
-    <%= f.text_field :cvc, class:"cvc", placeholder:"カード背面にある3桁の番号", maxlength:"4" %>
+    <%= f.label :cvc ,"【ＣＶＣ】" %><br>
+    <%= f.text_field :cvc, class:"cvc", placeholder:"カード背面にある3桁の番号", maxlength:"10" %>
   </div>
   <div class='form-wrap'>
   <br>

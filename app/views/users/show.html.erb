@@ -39,12 +39,12 @@
                 <th class="table__col1">自身のブログ等</th>
                 <td class="table__col2"><%=  "#{@user.appeal}" %></td>
               </tr>
-              <% if current_user.id == @user.id %>
+              <% if current_user.id == @user.id && @card.present?%>
                 <tr>
                   <th class="table__col1">カード情報</th>
                   <td class="table__col2"><%=  "**** **** **** " + @card[:last4] %> <%= @card[:exp_month] %>/<%= @card[:exp_year] %> </td>
                 </tr>
-              <%end%>
+              <%end%> 
             </tbody>
           </table>
         </div>
