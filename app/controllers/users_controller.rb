@@ -1,18 +1,19 @@
 class UsersController < ApplicationController
 
   def show
-    if user_signed_in?
       @user = User.find(params[:id])
+    if user_signed_in? == @user.id.present?
       @movie = @user.movies.order(id: "DESC")
       
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       card = Card.find_by(user_id: current_user.id)
-      if card.present?
-        customer = Payjp::Customer.retrieve(card.customer_token) # 先程のカード情報を元に、顧客情報を取得
-        @card = customer.cards.first
-      end
+        if card.present?
+          customer = Payjp::Customer.retrieve(card.customer_token) # 先程のカード情報を元に、顧客情報を取得
+          @card = customer.cards.first
+        end
+    else
+      redirect_to new_user_registration_path
     end
-    redirect_to root_path
   end
   
   def update

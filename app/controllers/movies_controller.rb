@@ -20,12 +20,14 @@ class MoviesController < ApplicationController
   end  
 
   def show
-    if user_signed_in?
+    @movie = Movie.find(params[:id])
+    if user_signed_in? && current_user.id.present?
       @movie = Movie.find(params[:id])
       @comment = Comment.new
       @comments = @movie.comments.includes(:user)
+    else
+      redirect_to new_user_registration_path
     end
-    redirect_to root_path
   end
 
   def edit
